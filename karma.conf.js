@@ -19,7 +19,7 @@ if(process.env.TRAVIS) {
 }
 module.exports = function (config) {
   config.set({
-    browsers: ['Chrome'],
+    browsers: [browser],
     singleRun: true,
     frameworks: ['mocha'],
     files: [
