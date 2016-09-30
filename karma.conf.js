@@ -1,5 +1,22 @@
+var fs = require('fs');
 var webpackConfig = require('./webpack.config.js');
-
+var browser = 'Chrome';
+if(process.env.TRAVIS) {
+  // jquery fix
+  fs.exists('./node_modules/jquery', (exists) => {
+    if(exists) {
+      fs.exists('./node_modules/jQuery', (exists) => {
+        if (!exists) { // if the jQuery folder aldready exists, don't rename.
+          console.log('jquery folder found. Renaming to jQuery');
+          fs.rename('./node_modules/jquery', './node_modules/jQuery');
+        }
+      });
+    }
+  });
+  // travis only supports firefox by default.
+  console.log('[React Todo App] CI Run -> Switching browser option to Firefox');
+  browser = 'Firefox';
+}
 module.exports = function (config) {
   config.set({
     browsers: ['Chrome'],
