@@ -23,7 +23,7 @@ module.exports = function (config) {
     singleRun: true,
     frameworks: ['mocha'],
     files: [
-      'node_modules/jquery/dist/jquery.min.js',
+      'node_modules/jQuery/dist/jquery.min.js',
       'node_modules/foundation-sites/dist/foundation.min.js',
       'app/tests/**/*.test.jsx'
     ],
