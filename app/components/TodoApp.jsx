@@ -23,7 +23,9 @@ var TodoApp = React.createClass({
           id: 4,
           text: 'remember to remember when you cant really remember'
         }
-      ]
+      ],
+      showCompleted: false,
+      searchText: ''
     };
   },
   handleAddTodo: function (text) {
@@ -32,7 +34,7 @@ var TodoApp = React.createClass({
   handleSearch: function (showCompleted, searchText) {
     this.setState({
       showCompleted: showCompleted,
-      searchText: searchText
+      searchText: searchText.toLowerCase()
     });
   },
   render: function() {

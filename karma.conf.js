@@ -39,6 +39,6 @@ module.exports = function (config) {
     webpack: webpackConfig,
     webpackServer: {
       noInfo: true
-    }
+    },
   });
 };

@@ -10,12 +10,12 @@ var TodoSearch = React.createClass({
     return (
       <div>
         <div>
-          <input type="text" refs="txtSearch" placeholder="Search" onChange={this.handleChange}/>
+          <input type="text" ref="txtSearch" placeholder="Search" onChange={this.handleChange}/>
         </div>
         <div>
           <label>
-            <input type="checkbox" refs="chkCompleted" onChange={this.handleChange}/>
-            Show completed todos 
+            <input type="checkbox" ref="chkCompleted" onChange={this.handleChange}/>
+            Show completed todos
           </label>
         </div>
       </div>
