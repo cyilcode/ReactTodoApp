@@ -1,9 +1,9 @@
 var webpack = require('webpack');
 var path = require('path');
-
+var jquery_folder = process.env.TRAVIS ? 'jQuery' : 'jquery';
 module.exports = {
   entry: [
-    'script!jquery/dist/jquery.min.js',
+    'script!'+ jquery_folder +'/dist/jquery.min.js',
     'script!foundation-sites/dist/foundation.min.js',
     './app/app.jsx'
   ],
