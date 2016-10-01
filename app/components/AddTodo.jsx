@@ -6,6 +6,7 @@ var AddTodo = React.createClass({
     var {txtTodo} = this.refs;
     if(txtTodo.value.length > 0) {
         this.props.onAddTodo(txtTodo.value);
+        txtTodo.value = '';
     }
   },
   render: function() {
