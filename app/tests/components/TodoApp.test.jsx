@@ -15,9 +15,11 @@ describe('TodoApp', () => {
         createdAt: 0,
         completedAt: undefined
       };
+      
     it('should exist', () => {
         expect(TodoApp).toExist();
     });
+
     it('should add todo to the todos state on handleAddTodo', () => {
         var todoText = 'Testing 123';
         todoapp.setState({todos: []});
@@ -25,6 +27,7 @@ describe('TodoApp', () => {
         expect(todoapp.state.todos[0].text).toBe(todoText);
         expect(todoapp.state.todos[0].createdAt).toBeA('number');
     });
+
     it('should toggle completed status of todo elements', () => {
       todoapp.setState({ todos: [todoItem] });
       todoapp.handleToggle(todoItem.id);
