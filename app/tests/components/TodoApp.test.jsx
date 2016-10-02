@@ -8,6 +8,13 @@ var TodoApp = require('TodoApp');
 var todoapp = TestUtils.renderIntoDocument(<TodoApp/>); // doesn't take any props. So, no need to redefine for every test.
 
 describe('TodoApp', () => {
+    var todoItem = {
+        id: 1337,
+        text: 'all hail mine turtle',
+        completed: false,
+        createdAt: 0,
+        completedAt: undefined
+      };
     it('should exist', () => {
         expect(TodoApp).toExist();
     });
@@ -16,15 +23,23 @@ describe('TodoApp', () => {
         todoapp.setState({todos: []});
         todoapp.handleAddTodo(todoText);
         expect(todoapp.state.todos[0].text).toBe(todoText);
+        expect(todoapp.state.todos[0].createdAt).toBeA('number');
     });
     it('should toggle completed status of todo elements', () => {
-      var todoItem = {
-        id: 1337,
-        text: 'all hail mine turtle',
-        completed: false
-      };
       todoapp.setState({ todos: [todoItem] });
       todoapp.handleToggle(todoItem.id);
       expect(todoapp.state.todos[0].completed).toBe(true);
+      expect(todoapp.state.todos[0].completedAt).toBeA('number');
     });
+
+    it('should remove completedAt property when toggled to not completed', () => {
+      todoItem.completed = true;
+      todoapp.setState({ todos: [todoItem] });
+      todoapp.handleToggle(todoItem.id);
+      expect(todoapp.state.todos[0].completed).toBe(false);
+      expect(todoapp.state.todos[0].completedAt).toBe(undefined);
+    });
+
+
+
 });
