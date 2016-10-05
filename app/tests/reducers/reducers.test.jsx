@@ -1,6 +1,6 @@
-var expect = require('expect');
-var df = require('deep-freeze-strict');
-var reducers = require('reducers');
+const expect = require('expect');
+const df = require('deep-freeze-strict');
+const reducers = require('reducers');
 
 describe('Reducers', () => {
   describe('searchTextReducer', () => {
