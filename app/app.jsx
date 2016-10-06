@@ -10,10 +10,6 @@ store.subscribe(() => {
   console.log('New state', store.getState());
 });
 
-store.dispatch(actions.addTodo('Like trainz'));
-store.dispatch(actions.setSearchText('trainz'));
-store.dispatch(actions.toggleShowCompleted());
-
 // Load foundation
 $(document).foundation();
 
