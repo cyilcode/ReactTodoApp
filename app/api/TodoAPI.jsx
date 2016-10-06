@@ -37,7 +37,7 @@ module.exports = {
         return -1;
       else if(a.completed && !b.completed)
         return 1;
-      else 
+      else
         return 0;
     });
     return filterTodos;
