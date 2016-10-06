@@ -43,7 +43,7 @@ describe('Reducers', () => {
         completedAt: undefined
       }];
       var action = { type: 'TOGGLE_TODO', id: object_id };
-      var res = reducers.todosReducer(object_array, df(action)); // fl!p fl0p
+      var res = reducers.todosReducer(object_array, df(action));
       expect(res[0].completed).toEqual(true);
       expect(res[0].completedAt).toBeA('number');
     });

@@ -1,11 +1,14 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var TestUtils = require('react-addons-test-utils');
-var expect = require('expect');
-var $ = require('jQuery');
+const React = require('react');
+const ReactDOM = require('react-dom');
+const {Provider} = require('react-redux');
+const TestUtils = require('react-addons-test-utils');
+const expect = require('expect');
+const $ = require('jQuery');
 
-var TodoApp = require('TodoApp');
-var todoapp = TestUtils.renderIntoDocument(<TodoApp/>); // doesn't take any props. So, no need to redefine for every test.
+const TodoApp = require('TodoApp');
+const actions = require('actions');
+const configureStore = require('configureStore');
+import TodoList from 'TodoList';
 
 describe('TodoApp', () => {
     var todoItem = {
@@ -15,34 +18,20 @@ describe('TodoApp', () => {
         createdAt: 0,
         completedAt: undefined
       };
-      
+
     it('should exist', () => {
         expect(TodoApp).toExist();
     });
 
-    it('should add todo to the todos state on handleAddTodo', () => {
-        var todoText = 'Testing 123';
-        todoapp.setState({todos: []});
-        todoapp.handleAddTodo(todoText);
-        expect(todoapp.state.todos[0].text).toBe(todoText);
-        expect(todoapp.state.todos[0].createdAt).toBeA('number');
+    it('should render TodoList', () => {
+      var store = configureStore.configure();
+      var provider = TestUtils.renderIntoDocument(
+        <Provider store={store}>
+          <TodoApp />
+        </Provider>
+      );
+      var todoApp = TestUtils.scryRenderedComponentsWithType(provider, TodoApp)[0];
+      var todoList = TestUtils.scryRenderedComponentsWithType(todoApp, TodoList);
+      expect(todoList.length).toEqual(1);
     });
-
-    it('should toggle completed status of todo elements', () => {
-      todoapp.setState({ todos: [todoItem] });
-      todoapp.handleToggle(todoItem.id);
-      expect(todoapp.state.todos[0].completed).toBe(true);
-      expect(todoapp.state.todos[0].completedAt).toBeA('number');
-    });
-
-    it('should remove completedAt property when toggled to not completed', () => {
-      todoItem.completed = true;
-      todoapp.setState({ todos: [todoItem] });
-      todoapp.handleToggle(todoItem.id);
-      expect(todoapp.state.todos[0].completed).toBe(false);
-      expect(todoapp.state.todos[0].completedAt).toBe(undefined);
-    });
-
-
-
 });
